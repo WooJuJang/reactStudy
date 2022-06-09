@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
-const TimesTable: React.FC = () => {
+const TimesTable = () => {
   const [state, setState] = useState({
     first: 0,
     seconde: 0,
@@ -18,15 +18,14 @@ const TimesTable: React.FC = () => {
         value: '',
         result: '정답: ' + prev.value,
       }));
-      inputRef.current?.focus();
     } else {
       setState((prev) => ({
         ...prev,
         value: '',
         result: '땡: ' + prev.value,
       }));
-      inputRef.current?.focus();
     }
+    inputRef.current?.focus();
   }, []);
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,8 +37,6 @@ const TimesTable: React.FC = () => {
   }, []);
   return (
     <>
-      {' '}
-      {console.log('rendering')}
       <div>
         {state.first}곱하기{state.seconde}는?
         <form onSubmit={(e) => onSubmit(e, state.first, state.seconde, state.value)}>
