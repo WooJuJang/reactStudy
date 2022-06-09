@@ -7,7 +7,7 @@ const TimesTable: React.FC = () => {
     value: '',
     result: '',
   });
-  const input = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const onSubmit = useCallback((e: React.FormEvent, first: number, seconde: number, value: string) => {
     e.preventDefault();
 
@@ -18,14 +18,14 @@ const TimesTable: React.FC = () => {
         value: '',
         result: '정답: ' + prev.value,
       }));
-      input.current?.focus();
+      inputRef.current?.focus();
     } else {
       setState((prev) => ({
         ...prev,
         value: '',
         result: '땡: ' + prev.value,
       }));
-      input.current?.focus();
+      inputRef.current?.focus();
     }
   }, []);
 
@@ -38,10 +38,12 @@ const TimesTable: React.FC = () => {
   }, []);
   return (
     <>
+      {' '}
+      {console.log('rendering')}
       <div>
         {state.first}곱하기{state.seconde}는?
         <form onSubmit={(e) => onSubmit(e, state.first, state.seconde, state.value)}>
-          <input type="number" ref={input} value={state.value} onChange={onChange} />
+          <input type="number" ref={inputRef} value={state.value} onChange={onChange} />
           <button>입력!</button>
         </form>
         <div>{state.result}</div>
