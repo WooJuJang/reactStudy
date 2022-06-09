@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 
+import { Container, Modal, Title } from './styled';
 const TimesTable = () => {
   const [state, setState] = useState({
     first: 0,
@@ -35,17 +36,21 @@ const TimesTable = () => {
   useEffect(() => {
     setState((prev) => ({ ...prev, first: Math.ceil(Math.random() * 9), seconde: Math.ceil(Math.random() * 9) }));
   }, []);
+
   return (
-    <>
-      <div>
-        {state.first}곱하기{state.seconde}는?
+    <Container>
+      <Modal>
+        <Title>구구단 게임</Title>
+        <label>
+          {state.first}곱하기{state.seconde}는?
+        </label>
         <form onSubmit={(e) => onSubmit(e, state.first, state.seconde, state.value)}>
           <input type="number" ref={inputRef} value={state.value} onChange={onChange} />
           <button>입력!</button>
         </form>
         <div>{state.result}</div>
-      </div>
-    </>
+      </Modal>
+    </Container>
   );
 };
 
