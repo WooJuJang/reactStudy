@@ -18,7 +18,10 @@ X
 2. 
 0(마운트 됐을 시 한번 찍힘)
 3.
-state를 변경시키기 위해선 setState를 이용해야 한다 따라서
+let [count,setCount]=useState(0)
+-->
+const [count,setCount]=useState(0)
+위와 같이 변경하고(let이 아닌 const로 써야한다고만 알지 이유는 잘 모르겠다.)
 const onChangeCount함수내부 코드를 아래와 같이 수정한다.
 setState((prev)=> prev+1)
 
